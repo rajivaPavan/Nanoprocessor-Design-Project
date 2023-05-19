@@ -3,9 +3,11 @@
 <!-- Logic -->
 ## Logic
 > $P_i = A_i \oplus B_i$
+> 
 > $G_i = A_i \cdot B_i $
 
 > $S_i = P_i \oplus C_{i}$
+> 
 > $C_i = G_i + P_i \cdot C_{i-1}$
 
 $C_0 = A_0 \cdot B_0 $
