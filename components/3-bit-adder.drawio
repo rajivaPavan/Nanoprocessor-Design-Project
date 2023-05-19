@@ -83,7 +83,7 @@
                     <mxGeometry x="100" width="110" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="58" value="" style="group" vertex="1" connectable="0" parent="1">
-                    <mxGeometry x="70" y="332" width="330" height="125" as="geometry"/>
+                    <mxGeometry x="70" y="332" width="340" height="125" as="geometry"/>
                 </mxCell>
                 <mxCell id="40" value="" style="group" vertex="1" connectable="0" parent="58">
                     <mxGeometry x="30.50746268656716" width="104.59701492537313" height="85" as="geometry"/>
@@ -124,7 +124,7 @@
                     <mxGeometry x="78.44776119402984" y="40" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="" style="group" vertex="1" connectable="0" parent="58">
-                    <mxGeometry x="187.40298507462683" y="40" width="142.59701492537317" height="85" as="geometry"/>
+                    <mxGeometry x="187.40298507462683" y="40" width="152.59701492537317" height="85" as="geometry"/>
                 </mxCell>
                 <mxCell id="43" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="42" source="47">
                     <mxGeometry relative="1" as="geometry">
@@ -167,6 +167,9 @@
                 <mxCell id="57" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.logic_gates.logic_gate;operation=or;" vertex="1" parent="42">
                     <mxGeometry x="82.59701492537317" y="-22.5" width="60" height="35.5" as="geometry"/>
                 </mxCell>
+                <mxCell id="75" value="Sum" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="42">
+                    <mxGeometry x="102.59701492537317" y="48" width="50" height="30" as="geometry"/>
+                </mxCell>
                 <mxCell id="52" value="" style="endArrow=none;html=1;" edge="1" parent="58">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="130.74626865671638" y="65" as="sourcePoint"/>
@@ -201,6 +204,18 @@
                         <mxPoint x="340" y="397" as="sourcePoint"/>
                         <mxPoint x="242" y="390" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="74" value="Carry" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="350" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="A" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="341" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="B" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="380" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="C" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="41" y="421" width="30" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
