@@ -8,8 +8,10 @@
 > $S_i = P_i \oplus C_{i}$
 > $C_i = G_i + P_i \cdot C_{i-1}$
 
-$C_0 = A_0 \cdot B_0 $ 
+$C_0 = A_0 \cdot B_0 $
+
 $C_1 = G_1 + P_1 \cdot C_0$
+
 $C_2 = G_2 + P_2 \cdot C_1$
 
 **Will implement this component using an Carry Lookahead adder instead of a RCA.**
