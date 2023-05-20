@@ -21,7 +21,7 @@ begin
     G <= A and B;
     P <= A xor B;
 
-    -- Generate Carry signals
+    -- Carry signals
     C(0) <= G(0) or (P(0) and Cin);
     C(1) <= G(1) or (P(1) and G(0)) or (P(1) and P(0) and Cin);
 
