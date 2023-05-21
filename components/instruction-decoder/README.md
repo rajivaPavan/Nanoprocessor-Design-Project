@@ -3,7 +3,7 @@
 We need to design and build the Instruction Decoder circuit to activate
 necessary components based on the instructions we wish to execute.
 
-#### **Be careful to activate only the necessary modules** 
+**Be careful to activate only the necessary modules** 
 - While executing MOVI instruction only the required register should be enabled, and the immediate value needs to be placed on the data bus. 
 - For ADD and NEG instructions, relevant inputs should be selected from the multiplexers and output should be sent to the correct register (register needs to be enabled). 
 - Moreover, NEG require setting Add/Sub select.
@@ -17,7 +17,7 @@ necessary components based on the instructions we wish to execute.
 
 ## Outputs
 - `R(3 downto 0)` : Register enable (3 bits)
-- `L` Load select (1 bit)
+- `L` : Load select (1 bit)
 <!-- - Immediate value (4 bit) -->
 - `IM(3 downto 0)` : Immediate value (4 bits)
 <!-- - 2 Register select (3 bits) -->
@@ -29,6 +29,14 @@ necessary components based on the instructions we wish to execute.
 - `J` : Jump flag (1 bit)
 <!-- - Jump address (3 bits) -->
 - `JA(2 downto 0)` : Jump address (3 bits)
+
+### OP Code for Instructions
+
+Decode the instruction based on the following OP codes:
+- `MOVI` : `10`
+- `ADD` : `00`
+- `NEG` : `01`
+- `JMP` : `11`
 
 
 
