@@ -1,0 +1,37 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- 8 Way 4 Bit Multiplexer
+entity Mux_8_4 is
+    port ( S : in std_logic_vector (2 downto 0); -- Control Bits
+           D : in std_logic_vector(31 downto 0); -- Data Buses
+           EN : in std_logic; -- Enable
+           Y : out std_logic_vector(3 downto 0)); -- Output
+end Mux_8_4;
+
+architecture Behavioral of Mux_8_4 is
+    
+component Mux_8_to_1 is
+    port(S : in std_logic_vector (2 downto 0);
+    D : in std_logic_vector (7 downto 0);
+    EN : in std_logic;
+    Y : out std_logic);
+end component;
+
+signal Y1 : std_logic_vector(3 downto 0);
+
+begin
+    -- Generate statement to make 4 of 8 to 1 Multiplexers
+    multiplexers: for i in 0 to 3 generate
+        mux_inst : Mux_8_to_1
+            port map (
+                S => S,
+                D  => D(i*8+7 downto i*8),
+                En => EN,
+                Y  => Y1(i)
+            );
+    end generate multiplexers;
+    
+    Y <= Y1;
+
+end Behavioral;
