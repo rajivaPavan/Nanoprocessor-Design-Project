@@ -26,6 +26,6 @@ begin
     );
     
     Y1 <= D AND Y0;
-    Y <= Y1(0) OR Y1(1) OR Y1(2) OR Y1(3) OR Y1(4) OR Y1(5) OR Y1(6) OR Y1(7);
+    Y <= ((Y1(0) OR Y1(1)) OR (Y1(2) OR Y1(3))) OR ((Y1(4) OR Y1(5)) OR (Y1(6) OR Y1(7)));
 
 end Behavioral;
