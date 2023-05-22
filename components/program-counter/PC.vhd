@@ -5,7 +5,7 @@ entity PC is
     Port ( A : in STD_LOGIC_VECTOR(2 downto 0);
            Res : in STD_LOGIC;
            Clk : in STD_LOGIC;
-           M : in STD_LOGIC_VECTOR(2 downto 0));
+           M : out STD_LOGIC_VECTOR(2 downto 0));
 end PC;
 
 architecture Behavioral of PC is

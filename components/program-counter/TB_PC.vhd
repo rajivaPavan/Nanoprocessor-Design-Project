@@ -12,7 +12,7 @@ component PC is
     port ( A : in STD_LOGIC_VECTOR(2 downto 0);
     Res : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    M : in STD_LOGIC_VECTOR(2 downto 0));;
+    M : out STD_LOGIC_VECTOR(2 downto 0));
 end component;
 
 signal A : STD_LOGIC_VECTOR(2 downto 0);
@@ -32,31 +32,28 @@ begin
 
     clock: process
     begin
-        R <= '0';
-        wait for clk_period/2;
         Clk <= '0';
-        A <= "000";
         wait for clk_period/2;
         Clk <= '1';
-        A <= "001";
-        wait for clk_period/2;
-        Clk <= '0';
-        A <= "010";
-        wait for clk_period/2;
-        Clk <= '1';
-        A <= "011";
-        wait for clk_period/2;
-        Clk <= '0';
-        A <= "100";
         wait for clk_period/2;
     end process;
-    
-    stim_proc: process
+      
+    stim: process
     begin
-        wait for 5 ns; -- wait for intialization
-        wait for 10 ns; --Stimulate for 100 ns then stop
+        Res <= '1';
+        wait for clk_period/2;
+        Res <= '0';
+        A <= "010"; -- 2
+        wait for clk_period;
+        A <= "001"; -- 1
+        wait for clk_period;
+        A <= "000"; -- 0
+        wait for clk_period;
+        A <= "100"; -- 4
+        wait for clk_period;
+        A <= "111"; -- 7
+        wait for clk_period;
+        Res <= '1';
         wait;
     end process;
-
-    
 end Behavioral;
