@@ -13,10 +13,10 @@ necessary components based on the instructions we wish to execute.
 
 ## Inputs 
 - `I(11 downto 0)` : Instruction (12 bits) 
-- `RC(3 downto 0)` : Register check for Jump (4 bits)
+- `RCJ(3 downto 0)` : Register check for Jump (4 bits)
 
 ## Outputs
-- `R(3 downto 0)` : Register enable (3 bits)
+- `R(2 downto 0)` : Register enable (3 bits)
 - `L` : Load select (1 bit)
 <!-- - Immediate value (4 bit) -->
 - `IM(3 downto 0)` : Immediate value (4 bits)
@@ -30,6 +30,9 @@ necessary components based on the instructions we wish to execute.
 <!-- - Jump address (3 bits) -->
 - `JA(2 downto 0)` : Jump address (3 bits)
 
+
+![](instruction-decoder.png)
+
 ### OP Code for Instructions
 
 Decode the instruction based on the following OP codes:
@@ -38,7 +41,50 @@ Decode the instruction based on the following OP codes:
 - `NEG` : `01`
 - `JMP` : `11`
 
+## Execute cycles for each instruction
 
+#### MOVI
+
+> F > D > E 
+
+```vhdl
+R <= I(9 downto 7)
+IM <= I(3 downto 0)
+L <= '1'
+```
+
+#### ADD
+
+> F > D > O > O > E
+
+```vhdl
+R <- I(9 downto 7)
+RSA <- I(6 downto 4)
+RSB <- I(3 downto 1)
+AS <- '0'
+L <- '0'
+```
+
+#### NEG
+
+> F > D > O > O > E
+
+```vhdl
+R <- I(9 downto 7)
+RSA <- I(6 downto 4)
+RSB <- "000"
+AS <- '1'
+L <- '0'
+```
+
+#### JMP
+
+> F > D > O > O > E
+
+```vhdl
+J <- '1'
+JA <- I(3 downto 1)
+```
 
 
 
