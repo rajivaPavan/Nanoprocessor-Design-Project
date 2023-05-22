@@ -1,4 +1,4 @@
-# 3 Bit Adder
+# 3 Bit CLA
 
 <!-- Logic -->
 ## Logic
