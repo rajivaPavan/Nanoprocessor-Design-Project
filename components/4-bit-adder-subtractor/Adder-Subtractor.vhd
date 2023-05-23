@@ -3,41 +3,44 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 
 
-entity Adder_Subtractor_4 is
+entity Add_Sub_4_bit is
+        Port(A_AS : in STD_LOGIC_VECTOR (3 DOWNTO 0);
+         B_AS : in STD_LOGIC_VECTOR (3 DOWNTO 0);
+         CTRL : in STD_LOGIC;
+         S_AS : out STD_LOGIC_VECTOR(3 DOWNTO 0);
+         Zero : out STD_LOGIC;
+         OverFlow : out STD_LOGIC);
+--  Port ( );
+end Add_Sub_4_bit;
+
+architecture Behavioral of Add_Sub_4_bit is
+
+COMPONENT RCA_4
+
     Port(A : in STD_LOGIC_VECTOR (3 downto 0);
          B : in STD_LOGIC_VECTOR (3 downto 0);
-         M : in STD_LOGIC;
+         C_in : in STD_LOGIC;
          S : out STD_LOGIC_VECTOR(3 DOWNTO 0);
-         Zero : out STD_LOGIC;
          C_out : out STD_LOGIC);
---  Port ( );
-end Adder_Subtractor_4;
+END COMPONENT;
 
-architecture Behavioral of Adder_Subtractor_4 is
-
-component RCA4
-Port(A : in STD_LOGIC_VECTOR (3 downto 0);
-     B : in STD_LOGIC_VECTOR (3 downto 0);
-     C_in: in STD_LOGIC;
-     S : out STD_LOGIC_VECTOR(3 DOWNTO 0);
-     C_out : out STD_LOGIC);
-
-end COMPONENT;
-
-signal MB: STD_LOGIC_VECTOR(3 DOWNTO 0);
-signal S_inter: STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL B_inter, S_inter: STD_LOGIC_VECTOR(3 DOWNTO 0);
 
 begin
-
-RCA4_0 : RCA4
+RCA_4_0 : RCA_4
     port map(
-        A => A,
-        B => MB,
-        C_in => '0',
-        S => S_INTER,
-        C_out => C_out);
-        
-  process (S_inter)
+        A => A_AS,
+        B => B_inter,
+        C_in => CTRL,
+        S => S_inter,
+        C_out => OverFlow);
+
+B_inter(0) <= B_AS(0) XOR CTRL;
+B_inter(1) <= B_AS(1) XOR CTRL;
+B_inter(2) <= B_AS(2) XOR CTRL;
+B_inter(3) <= B_AS(3) XOR CTRL;
+
+process (S_inter)
       begin
         if S_inter = "0000" then
           Zero <= '1';
@@ -45,12 +48,7 @@ RCA4_0 : RCA4
           Zero <= '0';
         end if;
       end process;
-
-MB(0) <= B(0) XOR M;
-MB(1) <= B(1) XOR M;
-MB(2) <= B(2) XOR M;
-MB(3) <= B(3) XOR M;
-
-S <= S_inter;
+S_AS <= S_inter;
 
 end Behavioral;
+
