@@ -3,16 +3,16 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 
 
-entity RCA4 is
+entity RCA_4 is
 Port(A : in STD_LOGIC_VECTOR (3 downto 0);
          B : in STD_LOGIC_VECTOR (3 downto 0);
          C_in : in STD_LOGIC;
          S : out STD_LOGIC_VECTOR(3 DOWNTO 0);
          C_out : out STD_LOGIC);
 --  Port ( );
-end RCA4;
+end RCA_4;
 
-architecture Behavioral of RCA4 is
+architecture Behavioral of RCA_4 is
 
 component FA
     Port ( A : in STD_LOGIC;
