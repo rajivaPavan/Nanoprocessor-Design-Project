@@ -26,7 +26,7 @@ begin
         mux_inst : Mux_8_to_1
             port map (
                 S => S,
-                D  => D(i*8+7 downto i*8),
+                D  => D(i+4*7) & D(i+4*6) & D(i+4*5) & D(i+4*4) & D(i+4*3) & D(i+4*1) & D(i+4*1) & D(i),
                 En => EN,
                 Y  => Y1(i)
             );
