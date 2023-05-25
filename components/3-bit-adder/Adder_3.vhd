@@ -12,7 +12,7 @@ entity Adder_3 is
 end Adder_3;
 
 architecture Behavioral of Adder_3 is
-    component CLA_3 is
+    component RCA_3 is
         port (
             A       : in  std_logic_vector(2 downto 0);
             B       : in  std_logic_vector(2 downto 0);
@@ -24,7 +24,7 @@ architecture Behavioral of Adder_3 is
     
 begin
 
-    Adder: CLA_3
+    Adder: RCA_3
     port map (
             A       => A,
             B       => B,
