@@ -23,33 +23,15 @@ end component;
 
 begin
  
-D_FF_0 : D_FF
-    port map(
-        D => D(0),
-        Res => Res,
-        Clk => Clk,
-        Q => Q(0)
-        );  
-D_FF_1 : D_FF
-    port map(
-        D => D(1),
-        Res => Res,
-        Clk => Clk,
-        Q => Q(1)
-        ); 
-D_FF_2 : D_FF
-    port map(
-        D => D(2),
-        Res => Res,
-        Clk => Clk,
-        Q => Q(2)
-        ); 
-D_FF_3 : D_FF
-    port map(
-        D => D(3),
-        Res => Res,
-        Clk => Clk,
-        Q => Q(3)
-        ); 
+D_Flip_Flops: for i in 0 to 3 generate
+        D_FF_Inst: D_FF port map(
+                D => D(i),
+                Res => Res,
+                Clk => Clk,
+                Q => Q(i)
+                ); 
+    end generate D_Flip_Flops;
+end Behavioral; 
+
         
 end Behavioral;
