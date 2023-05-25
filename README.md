@@ -5,5 +5,4 @@
 > 
 ## Components
 - 3 Bit Adder
-
-
+- 3 Bit Program Counter
