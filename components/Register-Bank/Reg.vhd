@@ -31,7 +31,4 @@ D_Flip_Flops: for i in 0 to 3 generate
                 Q => Q(i)
                 ); 
     end generate D_Flip_Flops;
-end Behavioral; 
-
-        
 end Behavioral;
