@@ -35,8 +35,8 @@ begin
     I0 <= I(1 downto 0);
     I1 <= I(1 downto 0);
     I2 <= I(2);
-    EN0 <= I(2) AND EN;
-    EN1 <= NOT I(2) AND EN;
+    EN0 <= NOT I(2) AND EN;
+    EN1 <= I(2) AND EN;
     Y(3 downto 0) <= Y0;
     Y(7 downto 4) <= Y1;
 
