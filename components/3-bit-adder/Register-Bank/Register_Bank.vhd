@@ -46,7 +46,7 @@ begin
     Decoder_3_to_8_0 : Decoder_3_to_8
         port map(
             I => Reg_En,
-            EN => Clk,
+            EN => '1', -- Always enabled
             Y => Reg_Sel
             );
 
