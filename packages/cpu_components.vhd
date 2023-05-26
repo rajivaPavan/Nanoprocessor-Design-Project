@@ -46,6 +46,9 @@ package Cpu_Components is
 
     -- Register
     component Reg
+    generic(
+        N : integer
+    );
     Port ( D : in data_bus;
            Res: in STD_LOGIC;
            En : in STD_LOGIC;

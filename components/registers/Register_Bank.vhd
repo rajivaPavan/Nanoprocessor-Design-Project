@@ -21,6 +21,9 @@ begin
 
     registers : for i in 0 to 7 generate
        reg_inst: reg
+            generic map(
+                N => 4
+            )
             port map(
                 D => Data,
                 Res => Res,
