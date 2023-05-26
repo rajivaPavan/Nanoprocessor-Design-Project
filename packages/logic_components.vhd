@@ -4,17 +4,6 @@ use work.buses.buses_8_4;
 
 package Logic_Components is
 
-    -- 3 Bit Adder
-    component Adder_3 is
-        port (
-            A       : in  std_logic_vector(2 downto 0);
-            B       : in  std_logic_vector(2 downto 0);
-            Cin     : in  std_logic;
-            Sum     : out std_logic_vector(2 downto 0);
-            Cout    : out std_logic
-        );
-    end component;
-
     -- 4 Bit Adder Subtractor
     component Add_Sub_4_bit is
         Port(A_AS : in STD_LOGIC_VECTOR (3 DOWNTO 0);

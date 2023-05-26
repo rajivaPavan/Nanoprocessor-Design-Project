@@ -15,7 +15,7 @@ architecture Behavioral of PC is
 begin
 
     -- 3 bit register 
-    Register : Reg
+    Reg_0 : Reg
         generic map (N => 3)
         port map(
                 D => A,

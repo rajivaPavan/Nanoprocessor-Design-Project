@@ -35,6 +35,14 @@ package Cpu_Components is
                M : out instruction_address);
     end component;
 
+    -- PC Incrementer
+    component PC_Inc is
+        port(
+            A_in: in instruction_address;
+            A_out: out instruction_address
+        );
+    end component;
+
     -- Register Bank
     component Register_Bank is
         Port ( Reg_En : in register_address;
