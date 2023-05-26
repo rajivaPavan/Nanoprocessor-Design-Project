@@ -1,6 +1,6 @@
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.logic_components.Decoder_3_to_8;
 
 entity Mux_8_to_1 is
     Port ( S : in STD_LOGIC_VECTOR (2 downto 0); -- Select
@@ -10,14 +10,9 @@ entity Mux_8_to_1 is
 end Mux_8_to_1;
 
 architecture Behavioral of Mux_8_to_1 is
-    
-component Decoder_3_to_8
-    Port(I : in STD_LOGIC_VECTOR(2 downto 0);
-            EN : in STD_LOGIC;
-           Y : out STD_LOGIC_VECTOR (7 downto 0)); 
-end component;
 
 SIGNAL Y0, Y1 : STD_LOGIC_VECTOR (7 downto 0);
+
 begin
     Decoder_3_to_8_0 : Decoder_3_to_8 Port Map (
         I => S,

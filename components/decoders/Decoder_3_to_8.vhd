@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.logic_components.Decoder_2_to_4;
 
 entity Decoder_3_to_8 is
     Port ( I : in STD_LOGIC_VECTOR(2 downto 0);
@@ -8,11 +9,6 @@ entity Decoder_3_to_8 is
 end Decoder_3_to_8;
 
 architecture Behavioral of Decoder_3_to_8 is
-component Decoder_2_to_4
-    Port ( I : in STD_LOGIC_VECTOR (1 downto 0);
-            EN: in STD_LOGIC;
-           Y : out STD_LOGIC_VECTOR (3 downto 0));
-end component;
 
 signal Y0, Y1: STD_LOGIC_VECTOR (3 downto 0);
 signal I0, I1: STD_LOGIC_VECTOR (1 downto 0);

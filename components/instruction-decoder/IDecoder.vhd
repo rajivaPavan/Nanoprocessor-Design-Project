@@ -1,20 +1,21 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use work.common.all; 
+use work.buses.all; 
+use work.constants.all;
 
 -- Instruction Decoder
 entity IDecoder is
     port(
-        I: in std_logic_vector(11 downto 0); -- Instruction
-        RCJump: in std_logic_vector(3 downto 0); -- Register Check for Jump
-        REn: out std_logic_vector(2 downto 0); -- Register Enable
-        RSA: out std_logic_vector(2 downto 0); -- Register Select A
-        RSB: out std_logic_vector(2 downto 0); -- Register Select B
+        I: in instruction_bus; -- Instruction
+        RCJump: in data_bus; -- Register Check for Jump
+        REn: out register_address; -- Register Enable
+        RSA: out register_address; -- Register Select A
+        RSB: out register_address; -- Register Select B
         AS: out std_logic; -- Adder Subtractor Select
-        IM: out std_logic_vector(3 downto 0); -- Immediate value
+        IM: out data_bus; -- Immediate value
         J:out std_logic; -- Jump flag
-        JA: out std_logic_vector(2 downto 0); -- Jump Address,
+        JA: out instruction_address; -- Jump Address,
         L: out std_logic -- Load Select
     );
 end IDecoder;
@@ -22,33 +23,32 @@ end IDecoder;
 architecture Behavioral of IDecoder is
 
 signal IEn: std_logic_vector(1 downto 0); -- Instruction Enable
-signal RCJ: std_logic_vector(3 downto 0);
+signal RCJ: std_logic_vector(3 downto 0); -- Register Check for Jump
 
 begin
     IEn <= I(11 downto 10); -- Instruction Bits 11 and 10
     RCJ <= RCJump;
-    decode: process(IEn, RCJ)
     
+    decode: process(IEn, RCJ)
     begin
-        
-        case to_integer(unsigned(IEn)) is
-            when MOVI => 
+        case IEn is
+            when MOVI_OP => 
                 IM <= I(3 downto 0); 
-                L <= '1'; 
+                L <= Immediate_Load; 
                 REn <= I(9 downto 7);
-            when ADD => 
+            when ADD_OP => 
                 AS <= '0';
                 RSA <= I(9 downto 7);
                 RSB <= I(6 downto 4);
                 REn <= I(9 downto 7);
-                L <= '0';
-            when NEG => 
+                L <= Register_Load;
+            when NEG_OP => 
                 AS <= '1';
                 RSA <= "000";
                 RSB <= I(9 downto 7);
                 REn <= I(6 downto 4);
-                L <= '0';
-            when JZR => 
+                L <= Register_Load;
+            when JZR_OP => 
                 if RCJ = "0000" then
                     J <= '1';
                 end if;

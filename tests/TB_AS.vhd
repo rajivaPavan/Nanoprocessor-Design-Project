@@ -50,5 +50,4 @@ begin
     wait for 50 ns;
 end process;
         
-    
-end Behavioral
+end Behavioral;
