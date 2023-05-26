@@ -1,5 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.buses.instruction_address;
+use work.logic_components.D_FF;
 
 entity PC is
     Port ( A : in instruction_address;
