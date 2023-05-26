@@ -97,7 +97,7 @@ package Common is
     component Mux_8_4 is
         port (S : in std_logic_vector (2 downto 0); -- Control Bits
                 -- Data Buses
-                D : in data_buses;
+                D : in buses_8_4;
                 EN : in std_logic; -- Enable
                 Y : out std_logic_vector(3 downto 0)); -- Output
     end component;
