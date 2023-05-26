@@ -73,7 +73,7 @@ package Cpu_Components is
             PC : in instruction_address; -- Next Program Counter Address
             JA : in instruction_address; -- Jump Address
             J : in std_logic; -- Jump Flag
-            A : in instruction_address -- Selected Address
+            A : out instruction_address -- Selected Address
         );
     end component;
 
