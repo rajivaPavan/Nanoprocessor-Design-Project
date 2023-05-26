@@ -2,10 +2,10 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity PC is
-    Port ( A : in STD_LOGIC_VECTOR(2 downto 0);
+    Port ( A : in instruction_address;
            Res : in STD_LOGIC;
            Clk : in STD_LOGIC;
-           M : out STD_LOGIC_VECTOR(2 downto 0));
+           M : out instruction_address);
 end PC;
 
 architecture Behavioral of PC is
