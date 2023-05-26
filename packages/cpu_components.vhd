@@ -5,12 +5,6 @@ use work.buses.all;
 
 package Cpu_Components is
 
-    -- Clock
-    constant clk_period : time := 10 ns;
-    constant clk_half_period : time := clk_period / 2;
-
-    ------- Nanoprocessor Component Declarations -----------
-
     -- Instruction Decoder
     component IDecoder is
         port(
