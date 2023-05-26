@@ -7,7 +7,7 @@ entity Register_Bank is
            Res : in STD_LOGIC;
            Clk : in STD_LOGIC;
            Data : in STD_LOGIC_VECTOR(3 downto 0);
-           Data_Buses : out buses_8);
+           Data_Buses : out data_buses);
 end Register_Bank;
 
 architecture Behavioral of Register_Bank is
