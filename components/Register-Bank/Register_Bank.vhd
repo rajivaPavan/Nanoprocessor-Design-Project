@@ -3,10 +3,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 use work.COMMON.all;
 
 entity Register_Bank is
-    Port ( Reg_En : in STD_LOGIC_VECTOR (2 downto 0);
+    Port ( Reg_En : in register_address;
            Res : in STD_LOGIC;
            Clk : in STD_LOGIC;
-           Data : in STD_LOGIC_VECTOR(3 downto 0);
+           Data : in data_bus;
            Data_Buses : out data_buses);
 end Register_Bank;
 
