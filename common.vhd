@@ -3,14 +3,26 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 package Common is
-    -- Custom Types
+
+    ---- Custom Types -----------------
+    -- Commonly used buses
+    subtype bus_3 is std_logic_vector(2 downto 0); -- 3 bit bus
+    subtype bus_4 is std_logic_vector(3 downto 0); -- 4 bit bus
+    subtype bus_8 is std_logic_vector(7 downto 0); -- 8 bit bus
+    subtype bus_12 is std_logic_vector(11 downto 0); -- 12 bit bus
+
+    -- Array of buses
     type buses_8 is array (7 downto 0) of std_logic_vector(3 downto 0);
     type buses_8_4 is array (7 downto 0) of std_logic_vector(3 downto 0); --- 8 buses of 4 bits each
     type buses_4_8 is array (3 downto 0) of std_logic_vector(7 downto 0);
     
     -- Extended Custom Types
     subtype data_buses is buses_8_4;
-    
+    subtype instruction_address is bus_3;
+    subtype instruction_bus is bus_12;
+    subtype register_value is bus_4;
+    subtype register_address is bus_3;
+
     -- OP Codes
     constant MOVI_OP : std_logic_vector(1 downto 0) := "10";
     constant ADD_OP : std_logic_vector(1 downto 0) := "00";
