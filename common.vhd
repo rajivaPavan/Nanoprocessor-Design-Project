@@ -3,14 +3,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 package Common is
-    -- Custom Types
-    type buses_8 is array (7 downto 0) of std_logic_vector(3 downto 0);
-    type buses_8_4 is array (7 downto 0) of std_logic_vector(3 downto 0); --- 8 buses of 4 bits each
-    type buses_4_8 is array (3 downto 0) of std_logic_vector(7 downto 0);
+
+    ---- Custom Types -----------------
+    -- Commonly used buses
+    subtype bus_3 is std_logic_vector(2 downto 0); -- 3 bit bus
+    subtype bus_4 is std_logic_vector(3 downto 0); -- 4 bit bus
+    subtype bus_8 is std_logic_vector(7 downto 0); -- 8 bit bus
+    subtype bus_12 is std_logic_vector(11 downto 0); -- 12 bit bus
+
+    -- Array of buses
+    type buses_8_4 is array (7 downto 0) of bus_4; -- 8 buses of 4 bits each
+    type buses_4_8 is array (3 downto 0) of bus_8; -- 4 buses of 8 bits each 
     
     -- Extended Custom Types
     subtype data_buses is buses_8_4;
-    
+    subtype instruction_address is bus_3;
+    subtype instruction_bus is bus_12;
+    subtype data_bus is bus_4;
+    subtype register_address is bus_3;
+
     -- OP Codes
     constant MOVI_OP : std_logic_vector(1 downto 0) := "10";
     constant ADD_OP : std_logic_vector(1 downto 0) := "00";
@@ -52,33 +63,33 @@ package Common is
     -- Instruction Decoder
     component IDecoder is
         port(
-            I: in std_logic_vector(11 downto 0); -- Instruction
-            RCJump: in std_logic_vector(3 downto 0); -- Register Check for Jump
-            REn: out std_logic_vector(2 downto 0); -- Register Enable
-            RSA: out std_logic_vector(2 downto 0); -- Register Select A
-            RSB: out std_logic_vector(2 downto 0); -- Register Select B
+            I: in instruction_bus; -- Instruction
+            RCJump: in data_bus; -- Register Check for Jump
+            REn: out register_address; -- Register Enable
+            RSA: out register_address; -- Register Select A
+            RSB: out register_address; -- Register Select B
             AS: out std_logic; -- Adder Subtractor Select
-            IM: out std_logic_vector(3 downto 0); -- Immediate value
+            IM: out data_bus; -- Immediate value
             J:out std_logic; -- Jump flag
-            JA: out std_logic_vector(2 downto 0); -- Jump Address,
+            JA: out instruction_address; -- Jump Address,
             L: out std_logic -- Load Select
         );
     end component;
 
     -- Program Counter
     component PC is
-        Port ( A : in STD_LOGIC_VECTOR(2 downto 0);
+        Port ( A : in instruction_address;
                Res : in STD_LOGIC;
                Clk : in STD_LOGIC;
-               M : out STD_LOGIC_VECTOR(2 downto 0));
+               M : out instruction_address);
     end component;
 
     -- Register Bank
     component Register_Bank is
-        Port ( Reg_En : in STD_LOGIC_VECTOR (2 downto 0);
+        Port ( Reg_En : in register_address;
                Res : in STD_LOGIC;
                Clk : in STD_LOGIC;
-               Data : in STD_LOGIC_VECTOR(3 downto 0);
+               Data : in data_bus;
                Data_Buses : out data_buses);
     end component;
     
@@ -86,7 +97,7 @@ package Common is
     component Mux_8_4 is
         port (S : in std_logic_vector (2 downto 0); -- Control Bits
                 -- Data Buses
-                D : in data_buses;
+                D : in buses_8_4;
                 EN : in std_logic; -- Enable
                 Y : out std_logic_vector(3 downto 0)); -- Output
     end component;

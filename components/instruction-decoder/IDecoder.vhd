@@ -6,15 +6,15 @@ use work.common.all;
 -- Instruction Decoder
 entity IDecoder is
     port(
-        I: in std_logic_vector(11 downto 0); -- Instruction
-        RCJump: in std_logic_vector(3 downto 0); -- Register Check for Jump
-        REn: out std_logic_vector(2 downto 0); -- Register Enable
-        RSA: out std_logic_vector(2 downto 0); -- Register Select A
-        RSB: out std_logic_vector(2 downto 0); -- Register Select B
+        I: in instruction_bus; -- Instruction
+        RCJump: in data_bus; -- Register Check for Jump
+        REn: out register_address; -- Register Enable
+        RSA: out register_address; -- Register Select A
+        RSB: out register_address; -- Register Select B
         AS: out std_logic; -- Adder Subtractor Select
-        IM: out std_logic_vector(3 downto 0); -- Immediate value
+        IM: out data_bus; -- Immediate value
         J:out std_logic; -- Jump flag
-        JA: out std_logic_vector(2 downto 0); -- Jump Address,
+        JA: out instruction_address; -- Jump Address,
         L: out std_logic -- Load Select
     );
 end IDecoder;
