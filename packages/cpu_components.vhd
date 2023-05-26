@@ -58,4 +58,25 @@ package Cpu_Components is
            Q : out std_logic_vector(N-1 downto 0));
     end component;
 
+    
+    component Load_Selector is
+        port(
+            LS : in std_logic; -- Load Select
+            IM : in data_bus; -- Immediate Value
+            R: in data_bus; -- Register Value
+            O: out data_bus -- Output Value
+        );
+    end component;
+
+    component Address_Selector is
+        port(
+            PC : in instruction_address; -- Next Program Counter Address
+            JA : in instruction_address; -- Jump Address
+            J : in std_logic; -- Jump Flag
+            A : in instruction_address -- Selected Address
+        );
+    end component;
+
+
+
 end package Cpu_Components;
