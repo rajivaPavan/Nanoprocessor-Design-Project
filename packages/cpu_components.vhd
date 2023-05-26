@@ -49,11 +49,11 @@ package Cpu_Components is
     generic(
         N : integer
     );
-    Port ( D : in data_bus;
+    Port ( D : in std_logic_vector(N-1 downto 0);
            Res: in STD_LOGIC;
            En : in STD_LOGIC;
            Clk : in STD_LOGIC;
-           Q : out data_bus);
+           Q : out std_logic_vector(N-1 downto 0));
     end component;
 
 end package Cpu_Components;
