@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+use work.adders.HA;
 
 entity FA is
     Port ( A : in STD_LOGIC;
@@ -11,14 +11,9 @@ entity FA is
 end FA;
 
 architecture Behavioral of FA is
-component HA 
-port(
-    A: in std_logic;
-    B: in std_logic;
-    S: out std_logic;
-    C: out std_logic);
-end component;
+
 SIGNAL HA0_S, HA0_C, HA1_S, HA1_C : STD_LOGIC;
+
 begin
 HA_0 : HA
  port map(
