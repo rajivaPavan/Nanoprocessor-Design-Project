@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use work.common.all;
+use work.buses.buses_8_4;
+use work.buses.buses_4_8;
 
 -- 8 Way 4 Bit Multiplexer
 entity Mux_8_4 is
