@@ -13,7 +13,7 @@ end RCA_4;
 architecture Behavioral of RCA_4 is
 
 signal Carry_Out : STD_LOGIC_VECTOR(3 downto 0);
-signal Carry_In : STD_LOGIC_VECTOR(4 downto 0);
+signal Carry_In : STD_LOGIC_VECTOR(3 downto 0);
 
 begin
     Carry_In(0) <= C_in;
