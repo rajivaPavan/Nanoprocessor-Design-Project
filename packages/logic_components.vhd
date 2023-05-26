@@ -15,14 +15,16 @@ package Logic_Components is
     end component;
     
      -- 2 way N bit Multiplexer
+
     component Mux_2_N is 
         generic(
             N : integer
         );
         port(
             S: in std_logic; -- Control Bit (0 - A, 1 - B)
-            D: in std_logic_vector(2*N - 1 downto 0); -- Data Buses 
-            Y : out std_logic_vector(N-1 downto 0)
+            A: in std_logic_vector(N - 1 downto 0); -- Data Bus
+            B: in std_logic_vector(N - 1 downto 0); -- Data Bus 
+            O : out std_logic_vector(N-1 downto 0)
         );
     end component;
     
