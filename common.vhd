@@ -6,19 +6,20 @@ package Common is
     -- Custom Types
     type buses_8 is array (7 downto 0) of std_logic_vector(3 downto 0);
     type buses_8_4 is array (7 downto 0) of std_logic_vector(3 downto 0); --- 8 buses of 4 bits each
+    type buses_4_8 is array (3 downto 0) of std_logic_vector(7 downto 0);
     
     -- Extended Custom Types
-    type data_buses is buses_8_4;
+    subtype data_buses is buses_8_4;
     
     -- OP Codes
     constant MOVI_OP : std_logic_vector(1 downto 0) := "10";
     constant ADD_OP : std_logic_vector(1 downto 0) := "00";
     constant NEG_OP : std_logic_vector(1 downto 0) := "01";
     constant JZR_OP : std_logic_vector(1 downto 0) := "11";
-    constant MOVI: to_integer(unsigned(MOVI_OP));
-    constant ADD: to_integer(unsigned(ADD_OP));
-    constant NEG: to_integer(unsigned(NEG_OP));
-    constant JZR: to_integer(unsigned(JZR_OP));
+    constant MOVI: integer := to_integer(unsigned(MOVI_OP));
+    constant ADD:  integer := to_integer(unsigned(ADD_OP));
+    constant NEG:  integer := to_integer(unsigned(NEG_OP));
+    constant JZR:  integer := to_integer(unsigned(JZR_OP));
 
     -- Clock
     constant clk_period : time := 10 ns;
@@ -64,6 +65,7 @@ package Common is
         );
     end component;
 
+    -- Program Counter
     component PC is
         Port ( A : in STD_LOGIC_VECTOR(2 downto 0);
                Res : in STD_LOGIC;
@@ -71,14 +73,22 @@ package Common is
                M : out STD_LOGIC_VECTOR(2 downto 0));
     end component;
 
+    -- Register Bank
     component Register_Bank is
         Port ( Reg_En : in STD_LOGIC_VECTOR (2 downto 0);
                Res : in STD_LOGIC;
                Clk : in STD_LOGIC;
                Data : in STD_LOGIC_VECTOR(3 downto 0);
-               Data_Buses : out buses_8);
+               Data_Buses : out data_buses);
     end component;
-
-
+    
+    -- 8 way 4 bit Multiplexer
+    component Mux_8_4 is
+        port (S : in std_logic_vector (2 downto 0); -- Control Bits
+                -- Data Buses
+                D : in data_buses;
+                EN : in std_logic; -- Enable
+                Y : out std_logic_vector(3 downto 0)); -- Output
+    end component;
 
 end package Common;
