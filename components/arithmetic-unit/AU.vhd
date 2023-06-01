@@ -18,7 +18,18 @@ end AU;
 architecture Behavioral of AU is
 
 begin
-    
+    process
+    begin
+        -- case 
+        case to_integer(unsigned(Operation_Sel)) is
+            when AU_ADD =>
+                Adder_Subtractor : Add_Sub_4_bit port map(I1, I2, O, Overflow, Zero, '0');
+            when AU_SUB =>
+                Adder_Subtractor : Add_Sub_4_bit port map(I1, I2, O, Overflow, Zero, '1');
+            when others =>
+            -- None;
+        end case;
+    end process;
 
 end Behavioral;
 
