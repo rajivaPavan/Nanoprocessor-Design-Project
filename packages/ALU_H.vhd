@@ -12,7 +12,7 @@ package ALU_H is
     subtype Operation_Sel is std_logic_vector(0 downto 0);    
     constant AU_ADD_SIGNAL : Operation_Sel := "0";
     constant AU_SUB_SIGNAL : Operation_Sel := "1";
-    constant AU_ADD = to_integer(unsigned(AU_ADD_SIGNAL));
-    constant AU_SUB = to_integer(unsigned(AU_SUB_SIGNAL));
+    constant AU_ADD : integer := to_integer(unsigned(AU_ADD_SIGNAL));
+    constant AU_SUB : integer := to_integer(unsigned(AU_SUB_SIGNAL));
     
 end package ALU_H;
