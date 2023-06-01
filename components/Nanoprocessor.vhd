@@ -25,6 +25,13 @@ signal Jump_Address : instruction_address; -- Jump Address
 signal Jump_Flag : std_logic; -- Jump Flag
 signal Instruction : instruction_address; -- Instruction
 
+signal Load_Selection : register_address; -- Load Selection
+signal Immediate_Value : data_bus; -- Immediate Data From Instruction
+signal OprASelect : register_address; -- Operand A Select
+signal OprBSelect : register_address; -- Operand B Select
+signal OprAData : data_bus; -- Operand A Data
+signal OprBData : data_bus; -- Operand B Data
+signal Register_Data : data_buses; -- Register Data
 
 begin
     Clock <= Clk;
@@ -61,24 +68,38 @@ begin
     -- Instruction Decoder
     Instruction_Decoder : IDecoder port map(
         I => Instruction, -- From Program ROM
-        RCJump => , -- From Operand Selector A
+        RCJump => OprAData, -- From Operand Selector A
         REN => , -- To Register Bank 
-        RSA => , -- To Operand Selector A
-        RSB => , -- To Operand Selector B
+        RSA => OprASelect, -- To Operand Selector A
+        RSB => OprBSelect, -- To Operand Selector B
         AS => , -- To AU
-        IM => , -- To Load Selector
+        IM => Immediate_Value, -- To Load Selector
         J => Jump_Flag, -- To Address Selector
         JA => Jump_Address -- To Address Selector
-        L => -- To Load Selector
+        L => Load_Selection -- To Load Selector
     );
 
     -- Load Selector
     Load_Selector_0 : Load_Selector port map(
-        LS => , -- From Instruction Decoder
-        IM => , -- From Instruction Decoder
+        LS => Load_Selection, -- From Instruction Decoder
+        IM => Immediate_Value, -- From Instruction Decoder
         R => , -- From AU
         O => , -- To Register Bank
     );
+
+    Opr_Selector_A : Operand_Selector port map(
+        Control => OprASelect, -- From Instruction Decoder
+        Data => Register_Data, -- From Register Bank
+        Selected => OprAData, -- To AU
+    );
+
+    Opr_Selector_B : Operand_Selector port map(
+        Control => OprBSelect, -- From Instruction Decoder
+        Data => Register_Data, -- From Register Bank
+        Selected => OprBData, -- To AU
+    );
+
+
 
 
 

@@ -82,6 +82,12 @@ package Cpu_Components is
              I: out instruction_bus);  -- Instruction
     end component;
 
+    component Opr_Selector is
+        port (Control : in register_address; -- Control Bits
+                -- Data Buses
+                Data : in data_buses;
+                Selected : out data_bus); -- Output
+    end component;
 
 
 end package Cpu_Components;
