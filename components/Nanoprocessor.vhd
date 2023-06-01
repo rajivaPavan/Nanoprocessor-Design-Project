@@ -30,24 +30,35 @@ begin
 
     -- Program Counter
     Program_Counter : PC port map(
-        A => Selected_Address,
+        A => Selected_Address, -- From Address Selector
         Clk => Clock,
         Res => Reset,
-        M => Current_Address
+        M => Current_Address -- Goes to ROM
     );
 
     -- Program Counter Incrementer
     PC_Incrementer : PC_Inc port map(
-        A_in => Current_Address,
-        A_out => Next_Address
+        A_in => Current_Address, -- From PC
+        A_out => Next_Address -- To Address Selector
     );
 
     -- Address Selector
     Address_Selector_0 : Address_Selector port map(
-        PC => Next_Address,
-        JA => Jump_Address,
-        J => Jump_Flag,
-        A => Selected_Address
+        PC => Next_Address, -- From PC Incrementer
+        JA => Jump_Address, -- From Instruction Decoder
+        J => Jump_Flag, -- From Instruction Decoder
+        A => Selected_Address -- To Program Counter
+    );
+
+    -- Program ROM
+    Program_ROM_0 : Program_ROM port map(
+        ROM_address => Current_Address, -- From PC
+        I => Instruction -- To Instruction Decoder
+    ); 
+
+    -- Instruction Decoder
+    Instruction_Decoder : IDecoder port map(
+        
     );
 
 

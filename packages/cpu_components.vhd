@@ -77,6 +77,11 @@ package Cpu_Components is
         );
     end component;
 
+    component Program_ROM is
+        port(ROM_address : in instruction_address; -- Memory Select
+             I: out instruction_bus);  -- Instruction
+    end component;
+
 
 
 end package Cpu_Components;
