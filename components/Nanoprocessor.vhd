@@ -23,6 +23,7 @@ signal Current_Address : instruction_address; -- Memory Select
 signal Selected_Address : instruction_address; -- Selected Address
 signal Jump_Address : instruction_address; -- Jump Address
 signal Jump_Flag : std_logic; -- Jump Flag
+signal Instruction : instruction_address; -- Instruction
 
 begin
     Clock <= Clk;
@@ -58,8 +59,20 @@ begin
 
     -- Instruction Decoder
     Instruction_Decoder : IDecoder port map(
-        
+        I => Instruction, -- From Program ROM
+        RCJump => , -- From Operand Selector A
+        REN => , -- To Register Bank 
+        RSA => , -- To Operand Selector A
+        RSB => , -- To Operand Selector B
+        AS => , -- To AU
+        IM => , -- To Load Selector
+        J => Jump_Flag, -- To Address Selector
+        JA => Jump_Address -- To Address Selector
+        L => -- To Load Selector
     );
+
+    -- Load Selector
+    
 
 
     
