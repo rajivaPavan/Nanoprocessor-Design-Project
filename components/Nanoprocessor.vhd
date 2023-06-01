@@ -25,6 +25,7 @@ signal Jump_Address : instruction_address; -- Jump Address
 signal Jump_Flag : std_logic; -- Jump Flag
 signal Instruction : instruction_address; -- Instruction
 
+
 begin
     Clock <= Clk;
     Reset <= Reset;
@@ -72,7 +73,13 @@ begin
     );
 
     -- Load Selector
-    
+    Load_Selector_0 : Load_Selector port map(
+        LS => , -- From Instruction Decoder
+        IM => , -- From Instruction Decoder
+        R => , -- From AU
+        O => , -- To Register Bank
+    );
+
 
 
     
