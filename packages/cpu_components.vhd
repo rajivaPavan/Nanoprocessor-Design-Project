@@ -11,12 +11,12 @@ package Cpu_Components is
         port(
             I: in instruction_bus; -- Instruction
             RCJump: in data_bus; -- Register Check for Jump
-            REn: out register_address; -- Register Enable
-            RSA: out register_address; -- Register Select A
-            RSB: out register_address; -- Register Select B
+            REn: out register_address := "000"; -- Register Enable
+            RSA: out register_address := "000"; -- Register Select A
+            RSB: out register_address := "000"; -- Register Select B
             OpS: out Operation_Sel; -- Adder Subtractor Select
             IM: out data_bus; -- Immediate value
-            J:out std_logic; -- Jump flag
+            J:out std_logic := '0'; -- Jump flag
             JA: out instruction_address; -- Jump Address,
             L: out std_logic -- Load Select
         );
@@ -40,7 +40,7 @@ package Cpu_Components is
 
     -- Register Bank
     component Register_Bank is
-        Port ( Reg_En : in register_address;
+        Port ( Reg_En : in register_address := "000";
                Res : in STD_LOGIC;
                Clk : in STD_LOGIC;
                Data : in data_bus;
@@ -96,8 +96,8 @@ package Cpu_Components is
             I1 : in data_bus;
             I2 : in data_bus;
             O : out data_bus;
-            Overflow : out std_logic;
-            Zero : out std_logic;
+            Overflow : out std_logic := '0';
+            Zero : out std_logic := '0';
             Operation : in Operation_Sel
         );
     end component;
