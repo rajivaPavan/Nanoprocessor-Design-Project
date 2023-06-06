@@ -73,7 +73,7 @@ package Cpu_Components is
         port(
             PC : in instruction_address; -- Next Program Counter Address
             JA : in instruction_address; -- Jump Address
-            J : in std_logic; -- Jump Flag
+            J : in std_logic := '0'; -- Jump Flag
             A : out instruction_address -- Selected Address
         );
     end component;
@@ -84,7 +84,7 @@ package Cpu_Components is
     end component;
 
     component Opr_Selector is
-        port (Control : in register_address; -- Control Bits
+        port (Control : in register_address := "000"; -- Control Bits
                 -- Data Buses
                 Data : in data_buses;
                 Selected : out data_bus); -- Output
@@ -93,12 +93,12 @@ package Cpu_Components is
     
     component AU is 
         port(
-            I1 : in data_bus;
-            I2 : in data_bus;
+            I1 : in data_bus := "0000";
+            I2 : in data_bus := "0000";
             O : out data_bus;
             Overflow : out std_logic := '0';
             Zero : out std_logic := '0';
-            Operation : in Operation_Sel
+            Operation : in Operation_Sel := "0"
         );
     end component;
 
