@@ -19,7 +19,21 @@ signal Reg_sel : STD_LOGIC_VECTOR(7 downto 0);
 
 begin
 
-    registers : for i in 0 to 7 generate
+
+    -- Read Only Register
+    reg_inst0: reg
+            generic map(
+                N => 4
+            )
+            port map(
+                D => Data,
+                Res => Res,
+                EN => '1',
+                Clk => Clk,
+                Q => Data_Buses(0)
+            );
+
+    registers : for i in 1 to 7 generate
        reg_inst: reg
             generic map(
                 N => 4

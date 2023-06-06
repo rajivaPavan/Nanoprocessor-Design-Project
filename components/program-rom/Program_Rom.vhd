@@ -22,11 +22,12 @@ type rom_type is array (0 to 7) of std_logic_vector(11 downto 0);
         "101100000010", --MOVI R6,2
         "001111100000", --ADD R7<-R6+R7 (1+2)
         "101100000011", --MOVI R6,3
-        "001111100000"  --ADD R7<-R6+R7 ((1+2)+3)
-        );
+        "001111100000",  --ADD R7<-R6+R7 ((1+2)+3)
+        "001111100000",
+        "001111100000",
+        "001111100000"
+    );
         
 begin
-I <= add_1_to_3(to_integer(unsigned(ROM_address)));
-
-
+    I <= add_1_to_3(to_integer(unsigned(ROM_address)));
 end Behavioral;
