@@ -51,7 +51,7 @@ package Logic_Components is
 
     -- D Flip Flop
     component D_FF
-        Port ( D : in STD_LOGIC;
+        Port ( D : in STD_LOGIC := '0';
             Res : in STD_LOGIC;
             Clk : in STD_LOGIC;
             Q : out STD_LOGIC;

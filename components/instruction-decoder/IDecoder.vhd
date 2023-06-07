@@ -32,6 +32,7 @@ begin
     
     decode: process(IEn, RCJ, I)
     begin
+        J <= '0';
         case IEn is
             when MOVI_OP => 
                 IM <= I(3 downto 0); 

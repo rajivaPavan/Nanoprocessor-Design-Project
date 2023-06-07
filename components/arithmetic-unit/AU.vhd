@@ -22,7 +22,7 @@ signal AS_CTRL : std_logic;
 
 begin
 
-    process
+    process(Operation)
     begin
         case Operation is
             when AU_ADD_SIGNAL =>
@@ -30,7 +30,7 @@ begin
             when AU_SUB_SIGNAL =>
                 AS_CTRL <= '1';
             when others =>
-                wait;
+                -- Do nothing
         end case;
     end process;
     
