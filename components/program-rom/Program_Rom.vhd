@@ -25,7 +25,7 @@ type rom_type is array (0 to 7) of std_logic_vector(11 downto 0);
         "000100010000", --ADD R2,R1 in hex 110
         "000110100000",  --ADD R3,R2 in hex 1a0
         "110100000100",  --JZR R2,4 in hex d04
-        "001110000011"  --R7,R3 in hex 383
+        "001110110000"  --R7,R3 in hex 383
     );
         
 begin
