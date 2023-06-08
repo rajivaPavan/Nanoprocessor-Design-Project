@@ -43,7 +43,7 @@ package Cpu_Components is
         Port ( Reg_En : in register_address := "000";
                Res : in STD_LOGIC;
                Clk : in STD_LOGIC;
-               Data : in data_bus;
+               Data : in data_bus := "0000";
                Data_Buses : out data_buses);
     end component;
 
@@ -54,7 +54,7 @@ package Cpu_Components is
     );
     Port ( D : in std_logic_vector(N-1 downto 0);
            Res: in STD_LOGIC;
-           En : in STD_LOGIC;
+           En : in STD_LOGIC := '0';
            Clk : in STD_LOGIC;
            Q : out std_logic_vector(N-1 downto 0));
     end component;
