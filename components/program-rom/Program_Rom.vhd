@@ -18,14 +18,14 @@ architecture Behavioral of Program_ROM is
 type rom_type is array (0 to 7) of std_logic_vector(11 downto 0);
 
     signal add_1_to_3 : rom_type := (
-        "100110000011", --MOVI R3,3
-        "100010000001", --MOVI R1,1
-        "010010000000",  --NEG R1
-        "100100000011", --MOVI R2,3
-        "000100010000", --ADD R2,R1
-        "000110100000",  --ADD R3,R2
-        "110100000100",  --JZR R2,4
-        "001110000011"  --R7,R3
+        "100110000011", --MOVI R3,3 in hex 983
+        "100010000001", --MOVI R1,1 in hex 881
+        "010010000000",  --NEG R1 in hex 480
+        "100100000011", --MOVI R2,3 in hex 903
+        "000100010000", --ADD R2,R1 in hex 110
+        "000110100000",  --ADD R3,R2 in hex 1a0
+        "110100000100",  --JZR R2,4 in hex d04
+        "001110000011"  --R7,R3 in hex 383
     );
         
 begin
