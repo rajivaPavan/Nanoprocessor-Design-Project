@@ -19,24 +19,24 @@ architecture Behavioral of TB_Nanoprocessor is
     signal Overflow: std_logic;
     signal Zero : std_logic;
     
-    signal Next_Address : instruction_address; -- Next Address
-    signal Current_Address : instruction_address; -- Memory Select
-    signal Selected_Address : instruction_address; -- Selected Address
-    signal Jump_Address : instruction_address; -- Jump Address
-    signal Jump_Flag : std_logic; -- Jump Flag
-    signal Instruction : instruction_bus; -- Instruction
+    signal Next_Address : instruction_address; -- From PC Incremeter to Address Selector
+    signal Current_Address : instruction_address; -- From PC to ROM
+    signal Selected_Address : instruction_address; -- From Address Selector to PC
+    signal Jump_Address : instruction_address; -- From Instruction Decoder to Address Selector
+    signal Jump_Flag : std_logic; -- From Instruction Decoder to Address Selector
+    signal Instruction : instruction_bus; -- From Program ROM to Instruction Decoder
     
-    signal Load_Selection : std_logic; -- Load Selection
-    signal Immediate_Value : data_bus; -- Immediate Data From Instruction
-    signal OprASelect : register_address; -- Operand A Select
-    signal OprBSelect : register_address; -- Operand B Select
-    signal OprAData : data_bus; -- Operand A Data
-    signal OprBData : data_bus; -- Operand B Data
-    signal Operation_Res : data_bus; -- Output of AU
-    signal Register_Data : data_buses; -- Register Data
-    signal AddSubSelect : Operation_Sel; -- Add/Subtract Select
-    signal Register_Enable : register_address; -- Register Enable
-    signal Selected_Load : data_bus; -- Selected Load
+    signal Load_Selection : std_logic; -- From Instruction Decoder to Load Selector
+    signal Immediate_Value : data_bus; -- From Instruction Decoder to Load Selector
+    signal OprASelect : register_address; -- From Instruction Decoder to Operand Selector A
+    signal OprBSelect : register_address; -- From Instruction Decoder to Operand Selector B
+    signal OprAData : data_bus; -- From Operand Selector A to AU
+    signal OprBData : data_bus; -- From Operand Selector B to AU
+    signal Operation_Res : data_bus; -- From AU to Load Selector
+    signal Register_Data : data_buses; -- From Register Bank to Operand Selectors
+    signal AddSubSelect : Operation_Sel; -- From Instruction Decoder to AU
+    signal Register_Enable : register_address; -- From Instruction Decoder to Register Bank
+    signal Selected_Load : data_bus; -- From Load Selector to Register Bank
     
     begin
     
@@ -138,7 +138,7 @@ architecture Behavioral of TB_Nanoprocessor is
             Reset <= '1';
             wait for clk_period;
             Reset <= '0';
-            wait for clk_period * 8;
+            wait;
         end process;
 
         
