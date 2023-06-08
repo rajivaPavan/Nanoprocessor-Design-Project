@@ -18,7 +18,12 @@ signal EN_inter : STD_LOGIC;
 signal Reg_sel : STD_LOGIC_VECTOR(7 downto 0);
 
 begin
-
+    Decoder_3_to_8_0 : Decoder_3_to_8
+        port map(
+            I => Reg_En,
+            EN => '1', -- Always enabled
+            Y => Reg_Sel
+        );
 
     -- Read Only Register
     reg_inst0: reg
@@ -26,7 +31,7 @@ begin
                 N => 4
             )
             port map(
-                D => Data,
+                D => "0000",
                 Res => Res,
                 EN => '1',
                 Clk => Clk,
@@ -47,11 +52,6 @@ begin
             );
     end generate registers;
     
-    Decoder_3_to_8_0 : Decoder_3_to_8
-        port map(
-            I => Reg_En,
-            EN => '1', -- Always enabled
-            Y => Reg_Sel
-        );
+    
 
 end Behavioral;
