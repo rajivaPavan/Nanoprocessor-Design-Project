@@ -11,9 +11,9 @@ package Cpu_Components is
         port(
             I: in instruction_bus; -- Instruction
             RCJump: in data_bus; -- Register Check for Jump
-            REn: out register_address := "000"; -- Register Enable
-            RSA: out register_address := "000"; -- Register Select A
-            RSB: out register_address := "000"; -- Register Select B
+            REn: out register_address; -- Register Enable
+            RSA: out register_address; -- Register Select A
+            RSB: out register_address; -- Register Select B
             OpS: out Operation_Sel; -- Adder Subtractor Select
             IM: out data_bus; -- Immediate value
             J:out std_logic := '0'; -- Jump flag
@@ -40,10 +40,10 @@ package Cpu_Components is
 
     -- Register Bank
     component Register_Bank is
-        Port ( Reg_En : in register_address := "000";
+        Port ( Reg_En : in register_address;
                Res : in STD_LOGIC;
                Clk : in STD_LOGIC;
-               Data : in data_bus := "0000";
+               Data : in data_bus;
                Data_Buses : out data_buses);
     end component;
 
@@ -54,7 +54,7 @@ package Cpu_Components is
     );
     Port ( D : in std_logic_vector(N-1 downto 0);
            Res: in STD_LOGIC;
-           En : in STD_LOGIC := '0';
+           En : in STD_LOGIC;
            Clk : in STD_LOGIC;
            Q : out std_logic_vector(N-1 downto 0));
     end component;
@@ -73,7 +73,7 @@ package Cpu_Components is
         port(
             PC : in instruction_address; -- Next Program Counter Address
             JA : in instruction_address; -- Jump Address
-            J : in std_logic := '0'; -- Jump Flag
+            J : in std_logic; -- Jump Flag
             A : out instruction_address -- Selected Address
         );
     end component;
@@ -84,7 +84,7 @@ package Cpu_Components is
     end component;
 
     component Opr_Selector is
-        port (Control : in register_address := "000"; -- Control Bits
+        port (Control : in register_address; -- Control Bits
                 -- Data Buses
                 Data : in data_buses;
                 Selected : out data_bus); -- Output
@@ -93,12 +93,12 @@ package Cpu_Components is
     
     component AU is 
         port(
-            I1 : in data_bus := "0000";
-            I2 : in data_bus := "0000";
+            I1 : in data_bus;
+            I2 : in data_bus;
             O : out data_bus;
-            Overflow : out std_logic := '0';
+            Overflow : out std_logic;
             Zero : out std_logic := '0';
-            Operation : in Operation_Sel := "0"
+            Operation : in Operation_Sel
         );
     end component;
 
