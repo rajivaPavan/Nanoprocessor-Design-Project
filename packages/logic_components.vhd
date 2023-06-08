@@ -54,6 +54,7 @@ package Logic_Components is
         Port ( D : in STD_LOGIC := '0';
             Res : in STD_LOGIC;
             Clk : in STD_LOGIC;
+            En : in STD_LOGIC;
             Q : out STD_LOGIC;
             Qbar : out STD_LOGIC);
     end component;

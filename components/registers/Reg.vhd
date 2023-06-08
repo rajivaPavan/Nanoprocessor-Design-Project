@@ -15,15 +15,15 @@ entity Reg is
 end Reg;
 
 architecture Behavioral of Reg is
-signal write : std_logic;
 
 begin
-    write <= En and Clk;
+
     D_Flip_Flops: for i in 0 to N-1 generate
         D_FF_Inst: D_FF port map(
                 D => D(i),
                 Res => Res,
-                Clk => write,
+                Clk => Clk,
+                En => En,
                 Q => Q(i)
                 ); 
     end generate D_Flip_Flops;
