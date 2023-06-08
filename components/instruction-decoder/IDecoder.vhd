@@ -53,12 +53,13 @@ begin
             when JZR_OP => 
                 if RCJ = "0000" then
                     J <= Jump;
+                    JA <= I(2 downto 0);
                 end if;
             when others => 
                 -- do nothing
         end case;
 
-        JA <= I(2 downto 0);
+
 
     end process decode;
 
