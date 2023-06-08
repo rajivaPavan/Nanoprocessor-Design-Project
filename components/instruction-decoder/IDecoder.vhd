@@ -48,7 +48,7 @@ begin
                 OpS <= AU_SUB_SIGNAL;
                 RSA <= "000"; -- Zeroth Register
                 RSB <= I(9 downto 7);
-                REn <= I(6 downto 4);
+                REn <= I(9 downto 7);
                 L <= Register_Load;
             when JZR_OP => 
                 if RCJ = "0000" then
