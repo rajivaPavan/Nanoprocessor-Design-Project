@@ -26,34 +26,42 @@ architecture Behavioral of IDecoder is
 signal IEn: std_logic_vector(1 downto 0); -- Instruction Enable
 signal RCJ: std_logic_vector(3 downto 0); -- Register Check for Jump
 constant Jump : std_logic := '1';
+constant NotJump : std_logic := '0';
+
 begin
     IEn <= I(11 downto 10); -- Instruction Bits 11 and 10
     RCJ <= RCJump;
     
     decode: process(IEn, RCJ, I)
     begin
-        J <= '0';
         case IEn is
             when MOVI_OP => 
+                J <= NotJump;
                 IM <= I(3 downto 0); 
                 L <= Immediate_Load; 
                 REn <= I(9 downto 7);
             when ADD_OP => 
+                J <= NotJump;
                 OpS <= AU_ADD_SIGNAL;
                 RSA <= I(9 downto 7);
                 RSB <= I(6 downto 4);
                 REn <= I(9 downto 7);
                 L <= Register_Load;
             when NEG_OP => 
+                J <= NotJump;
                 OpS <= AU_SUB_SIGNAL;
                 RSA <= "000"; -- Zeroth Register
                 RSB <= I(9 downto 7);
                 REn <= I(9 downto 7);
                 L <= Register_Load;
             when JZR_OP => 
-                if RCJ /= "0000" then
+                RSA <= I(9 downto 7);
+                REn <= "000";
+                if RCJ = "0000" then
                     J <= Jump;
                     JA <= I(2 downto 0);
+                else
+                    J <= NotJump;
                 end if;
             when others => 
                 -- do nothing

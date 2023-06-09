@@ -24,8 +24,8 @@ type rom_type is array (0 to 7) of std_logic_vector(11 downto 0);
         "100100000011", --MOVI R2,3 in hex 903
         "000100010000", --ADD R2,R1 in hex 110
         "001110100000",  --ADD R7,R2 in hex 1a0
-        "110100000100",  --JZR R2,4 in hex d04
-        "100000000000"  -- MOVI 0,0 pass statement
+        "110100000110",  --JZR R2,6 in hex d04
+        "110000000100"  -- JZR R0,4 in hex d04
     );
         
 begin
