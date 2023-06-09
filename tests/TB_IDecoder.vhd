@@ -1,33 +1,22 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use work.common.all;
+use work.constants.clk_period;
+use work.constants.clk_half_period;
+use work.cpu_components.IDecoder;
+use work.ALU_H.Operation_Sel;
 
 entity TB_IDecoder is
     -- port();
 end TB_IDecoder;
 
 architecture Behavioral of TB_IDecoder is
-component IDecoder is
-    port(
-        I: in std_logic_vector(11 downto 0); -- Instruction
-        RCJump: in std_logic_vector(3 downto 0); -- Register Check for Jump
-        REn: out std_logic_vector(2 downto 0); -- Register Enable
-        RSA: out std_logic_vector(2 downto 0); -- Register Select A
-        RSB: out std_logic_vector(2 downto 0); -- Register Select B
-        AS: out std_logic; -- Adder Subtractor Select
-        IM: out std_logic_vector(3 downto 0); -- Immediate value
-        J:out std_logic; -- Jump flag
-        JA: out std_logic_vector(2 downto 0); -- Jump Address,
-        L: out std_logic -- Load Select
-    );
-end component;
 
 signal I: std_logic_vector(11 downto 0);
 signal RCJump: std_logic_vector(3 downto 0):="0001";
 signal REn: std_logic_vector(2 downto 0);
 signal RSA: std_logic_vector(2 downto 0);
 signal RSB: std_logic_vector(2 downto 0);
-signal AS: std_logic;
+signal AS: Operation_Sel;
 signal IM: std_logic_vector(3 downto 0);
 signal J: std_logic;
 signal JA: std_logic_vector(2 downto 0);
@@ -40,7 +29,7 @@ begin
         REn => REn,
         RSA => RSA,
         RSB => RSB,
-        AS => AS,
+        OpS => AS,
         IM => IM,
         J => J,
         JA => JA,

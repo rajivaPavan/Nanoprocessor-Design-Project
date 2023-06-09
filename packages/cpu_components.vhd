@@ -2,6 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use work.buses.all;
+use work.ALU_H.all;
 
 package Cpu_Components is
 
@@ -13,9 +14,9 @@ package Cpu_Components is
             REn: out register_address; -- Register Enable
             RSA: out register_address; -- Register Select A
             RSB: out register_address; -- Register Select B
-            AS: out std_logic; -- Adder Subtractor Select
+            OpS: out Operation_Sel; -- Adder Subtractor Select
             IM: out data_bus; -- Immediate value
-            J:out std_logic; -- Jump flag
+            J:out std_logic := '0'; -- Jump flag
             JA: out instruction_address; -- Jump Address,
             L: out std_logic -- Load Select
         );
@@ -73,10 +74,33 @@ package Cpu_Components is
             PC : in instruction_address; -- Next Program Counter Address
             JA : in instruction_address; -- Jump Address
             J : in std_logic; -- Jump Flag
-            A : in instruction_address -- Selected Address
+            A : out instruction_address -- Selected Address
         );
     end component;
 
+    component Program_ROM is
+        port(ROM_address : in instruction_address; -- Memory Select
+             I: out instruction_bus);  -- Instruction
+    end component;
+
+    component Opr_Selector is
+        port (Control : in register_address; -- Control Bits
+                -- Data Buses
+                Data : in data_buses;
+                Selected : out data_bus); -- Output
+    end component;
+    
+    
+    component AU is 
+        port(
+            I1 : in data_bus;
+            I2 : in data_bus;
+            O : out data_bus;
+            Overflow : out std_logic;
+            Zero : out std_logic := '0';
+            Operation : in Operation_Sel
+        );
+    end component;
 
 
 end package Cpu_Components;

@@ -19,5 +19,5 @@ package Buses is
     subtype instruction_bus is bus_12;
     subtype data_bus is bus_4;
     subtype register_address is bus_3;
-
+    
 end package Buses;

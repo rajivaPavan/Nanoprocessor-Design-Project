@@ -33,7 +33,7 @@ package Logic_Components is
         port (S : in std_logic_vector (2 downto 0); -- Control Bits
                 -- Data Buses
                 D : in buses_8_4;
-                EN : in std_logic; -- Enable
+                EN : in std_logic := '1'; -- Enable
                 Y : out std_logic_vector(3 downto 0)); -- Output
     end component;
     
@@ -51,9 +51,10 @@ package Logic_Components is
 
     -- D Flip Flop
     component D_FF
-        Port ( D : in STD_LOGIC;
+        Port ( D : in STD_LOGIC := '0';
             Res : in STD_LOGIC;
             Clk : in STD_LOGIC;
+            En : in STD_LOGIC;
             Q : out STD_LOGIC;
             Qbar : out STD_LOGIC);
     end component;

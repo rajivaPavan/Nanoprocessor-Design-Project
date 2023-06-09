@@ -1,24 +1,24 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.constants.clk_period;
+use work.constants.clk_half_period;
 use work.buses.all;
 use work.cpu_components.all;
 use work.ALU_H.all;
 
-entity Nanoprocessor is
-    port(
-        Clk : in std_logic; -- Clock
-        Res : in std_logic; -- Reset
-        Overflow : out std_logic; -- Overflow Flag
-        Zero : out std_logic; -- Zero Flag
-        Data : out data_bus -- Last Register
-    );
-end Nanoprocessor;
 
-architecture Behavioral of Nanoprocessor is
+entity TB_Nanoprocessor is
+    -- port();
+end TB_Nanoprocessor;
 
-signal Clock : std_logic; -- Clock
-signal Reset : std_logic; -- Reset
+architecture Behavioral of TB_Nanoprocessor is
 
+    signal Clock : std_logic; -- Clock
+    signal Reset : std_logic; -- Reset
+    signal Data : data_bus;
+    signal Overflow: std_logic;
+    signal Zero : std_logic;
+    
     signal Next_Address : instruction_address; -- From PC Incremeter to Address Selector
     signal Current_Address : instruction_address; -- From PC to ROM
     signal Selected_Address : instruction_address; -- From Address Selector to PC
@@ -39,9 +39,6 @@ signal Reset : std_logic; -- Reset
     signal Selected_Load : data_bus; -- From Load Selector to Register Bank
     
     begin
-
-        Clock <= Clk;
-        Reset <= Res;
     
         -- Program Counter
         Program_Counter : PC port map(
@@ -127,5 +124,23 @@ signal Reset : std_logic; -- Reset
         );
     
         Data <= Register_Data(7); -- Last Register Data
+
+        clk_process : process
+        begin
+            Clock <= '0';
+            wait for clk_half_period;
+            Clock <= '1';
+            wait for clk_half_period;
+        end process;
+
+        reset_process : process
+        begin
+            Reset <= '1';
+            wait for clk_period;
+            Reset <= '0';
+            wait;
+        end process;
+
         
     end Behavioral;
+    
