@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use work.common.all;
+use work.buses.data_buses;
+use work.logic_components.Mux_8_4;
 
 entity TB_Mux_8_4 is
     -- port();
@@ -65,7 +66,7 @@ begin
         -- 344
         D(2) <= "0011";
         D(1) <= "0100"; D(0) <= "0100";
-        wait; 
+        wait for period*8;
     end process;
 
 end Behavioral;
